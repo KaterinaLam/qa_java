@@ -22,12 +22,21 @@ public class LionTest {
     @Mock
     Feline feline;
 
+
     /**
      * Лев неизвестного пола должен выдать ошибку.
      */
-    @Test(expected = Exception.class)
-    public void shouldLionWithIncorrectSexHasError() throws Exception {
-        new Lion("Киборг ", new Feline());
+
+    @Test
+    public void shouldLionWithIncorrectSexHasError() {
+        String expectedErrorMessage = "Используйте допустимые значения пола животного - Самец или Самка";
+        String actualErrorMessage = null;
+        try {
+            new Lion("Киборг ", new Feline());
+        } catch (Exception exception) {
+            actualErrorMessage = exception.getMessage();
+        }
+        Assert.assertEquals("Исключение не сработало", expectedErrorMessage, actualErrorMessage);
     }
 
     /**
@@ -37,7 +46,7 @@ public class LionTest {
     public void shouldLionHasFood() throws Exception {
         Lion lion = new Lion("Самец", new Feline());
         Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Assert.assertEquals(feline.getFood("Хищник"),lion.getFood());
+        Assert.assertEquals("Список еды у льва должен быть заполнен", feline.getFood("Хищник"), lion.getFood());
     }
 
     /**
@@ -45,7 +54,7 @@ public class LionTest {
      */
     @Test
     public void lionShouldHaveKittens() throws Exception {
-        Assert.assertEquals(new Lion("Самец", new Feline()).getKittens(),1);
+        Assert.assertEquals("У льва должны быть котята", new Lion("Самец", new Feline()).getKittens(), 1);
     }
 
 

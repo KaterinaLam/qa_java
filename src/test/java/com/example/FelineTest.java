@@ -16,7 +16,7 @@ public class FelineTest {
     @Test
     public void felineShouldHaveFood() throws Exception {
         Assert.assertTrue(
-                "Список еды для хищника должен быть заполнен.",
+                "Список еды должен быть заполнен.",
                 new Feline().getFood("Хищник").size() > 0
         );
     }
@@ -27,7 +27,7 @@ public class FelineTest {
         Feline feline = new Feline();
         List<String> expectedEatMeat = Arrays.asList("Животные", "Птицы", "Рыба");
         List<String> actualEatMeat = feline.getFood("Хищник");
-        assertEquals(expectedEatMeat, actualEatMeat);
+        assertEquals("Хищник должен питаться мясом", expectedEatMeat, actualEatMeat);
     }
 
 
@@ -37,7 +37,7 @@ public class FelineTest {
         Feline feline = new Feline();
         String expectedFamily = "Кошачьи";
         String actualFamily = feline.getFamily();
-        Assert.assertEquals(expectedFamily, actualFamily);
+        Assert.assertEquals("Название семейства кошачьих отличается", expectedFamily, actualFamily);
     }
 
     //Есть котятки
@@ -46,7 +46,7 @@ public class FelineTest {
         Feline feline = new Feline();
         int expectedKittens = 1;
         int actualKittens = feline.getKittens();
-        Assert.assertEquals(expectedKittens, actualKittens);
+        Assert.assertEquals("У львицы должны быть котята", expectedKittens, actualKittens);
     }
 
 }
